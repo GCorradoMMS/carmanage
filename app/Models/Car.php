@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\UserCar;
 
 class Car extends Model
 {
@@ -19,4 +20,13 @@ class Car extends Model
         'model',
         'year'
     ];
+
+    protected $hidden = [
+        'deleted_at'
+    ];
+
+    public function userCars()
+    {
+        return $this->hasMany(UserCar::class, 'car_id');
+    }
 }

@@ -17,8 +17,8 @@ class UserCarController extends Controller
     public function associate(UserCarRequest $request)
     {
         $this->service->associateUserToCar(
-            $request->input('user_id'),
-            $request->input('car_id')
+            $request->input('userId'),
+            $request->input('carId'),
         );
 
         return response()->json(['message' => 'User associated with car successfully']);
@@ -27,8 +27,8 @@ class UserCarController extends Controller
     public function disassociate(UserCarRequest $request)
     {
         $this->service->disassociateUserToCar(
-            $request->input('user_id'),
-            $request->input('car_id')
+            $request->input('userId'),
+            $request->input('carId')
         );
 
         return response()->json(['message' => 'User disassociated from car successfully']);

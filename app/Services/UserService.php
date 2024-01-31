@@ -18,11 +18,11 @@ class UserService {
         return $this->userRepository->listUsers();
     }
 
-    public function getUserById(int $id): User {
+    public function getUserById(int $id): Collection {
         return $this->userRepository->getUserById($id);
     }
 
-    public function createUser(array $data): User {
+    public function storeUser(array $data): User {
         return $this->userRepository->createUser($data);
     }
 

@@ -17,7 +17,7 @@ class UserRepository implements UserRepositoryInterface {
         return User::all();
     }
 
-    public function getUserById(int $id): User {
+    public function getUserById(int $id): Collection {
         return User::where('id', '=', $id)->get();
     }
 
@@ -26,10 +26,14 @@ class UserRepository implements UserRepositoryInterface {
     }
 
     public function updateUser(int $id, array $data): User {
-        return $this->model->where('id', '=', $id)->update($data);
+        $user = User::findOrFail($id);
+        $user->update($data);
+
+        return $user->fresh();
     }
     
     public function destroyUser(int $id): void {
-        $this->model->where('id', '=', $id)->delete();
+        $user = User::findOrFail($id);
+        $user->delete();
     }
 }

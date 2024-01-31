@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CarRequest extends FormRequest
+class CarUpdateRequest extends FormRequest
 {
     public function authorize()
     {
@@ -14,8 +14,9 @@ class CarRequest extends FormRequest
     public function rules()
     {
         return [
-            'model' => 'required|string|max:255',
-            'year' => 'required|integer|min:1900',
+            'brand' => 'string|max:255',
+            'model' => 'string|max:255',
+            'year' => 'integer|min:1900',
         ];
     }
 }

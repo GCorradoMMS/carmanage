@@ -17,7 +17,7 @@ class CarRepository implements CarRepositoryInterface {
         return Car::all();
     }
 
-    public function getCarById(int $id): Car {
+    public function getCarById(int $id): Collection {
         return Car::where('id', '=', $id)->get();
     }
 
@@ -26,10 +26,14 @@ class CarRepository implements CarRepositoryInterface {
     }
 
     public function updateCar(int $id, array $data): Car {
-        return $this->model->where('id', '=', $id)->update($data);
+        $car = Car::findOrFail($id);
+        $car->update($data);
+        
+        return $car->fresh();
     }
     
     public function destroyCar(int $id): void {
-        $this->model->where('id', '=', $id)->delete();
+        $car = Car::findOrFail($id);
+        $car->delete();
     }
 }

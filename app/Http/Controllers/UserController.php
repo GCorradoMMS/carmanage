@@ -3,30 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserResource;
-use App\Services\Service;
 use App\Services\UserService;
 
 class UserController extends Controller
 {
-
     protected $service;
 
     public function __construct(UserService $service) {
         $this->service = $service;
     }
 
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        return $this->service->listUsers();
+        $users = $this->service->listUsers();
+
+        return UserResource::collection($users);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(int $id)
     {
         return $this->service->getUserById($id);
@@ -34,12 +29,12 @@ class UserController extends Controller
 
     public function store(UserRequest $request)
     {
-        $user = $this->service->createUser($request->validated());
+        $user = $this->service->storeUser($request->validated());
 
-        return new UserResource($user);
+        return $user;
     }
 
-    public function update(UserRequest $request, $id)
+    public function update(UserUpdateRequest $request, int $id)
     {
         $user = $this->service->updateUser($id, $request->validated());
 

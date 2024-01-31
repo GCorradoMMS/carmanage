@@ -18,11 +18,11 @@ class CarService {
         return $this->carRepository->listCars();
     }
 
-    public function getCarById(int $id): Car {
+    public function getCarById(int $id): Collection {
         return $this->carRepository->getCarById($id);
     }
 
-    public function createCar(array $data): Car {
+    public function storeCar(array $data): Car {
         return $this->carRepository->createCar($data);
     }
 

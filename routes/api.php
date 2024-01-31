@@ -23,9 +23,24 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::prefix('v1')->group(function () {
-    Route::resource('users', UserController::class);
-    Route::resource('cars', CarController::class);
-    Route::post('/users/{userId}/associate/cars/{carId}', [UserCarController::class, 'associate']);
-    Route::delete('/users/{userId}/disassociate/cars/{carId}', [UserCarController::class, 'disassociate']);
-    Route::get('/users/{userId}/cars', [UserCarController::class, 'getUserCars']);
+
+    Route::prefix('users')->group(function() {
+        Route::get('/', [UserController::class, 'index']);
+        Route::get('/{userId}', [UserController::class, 'show']);
+        Route::post('/', [UserController::class, 'store']);
+        Route::put('/{userId}', [UserController::class, 'update']);
+        Route::delete('/{userId}', [UserController::class, 'destroy']);
+
+        Route::post('/associate/cars/', [UserCarController::class, 'associate']);
+        Route::delete('/disassociate/cars/', [UserCarController::class, 'disassociate']);
+        Route::get('/{userId}/cars', [UserCarController::class, 'getUserCars']);
+    });
+
+    Route::prefix('cars')->group(function() {
+        Route::get('/', [CarController::class, 'index']);
+        Route::get('/{carsId}', [CarController::class, 'show']);
+        Route::post('/', [CarController::class, 'store']);
+        Route::put('/{carsId}', [CarController::class, 'update']);
+        Route::delete('/{carsId}', [CarController::class, 'destroy']);
+    });
 });
