@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\UserCar;
+use App\Traits\CascadingSoftDelete;
 
 class Car extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, CascadingSoftDelete;
 
     protected $table = 'cars';
     protected $primaryKey = 'id';
@@ -27,6 +28,6 @@ class Car extends Model
 
     public function userCars()
     {
-        return $this->hasMany(UserCar::class, 'car_id');
+        return $this->hasMany(UserCar::class, 'car_id')->onDelete('cascade');
     }
 }

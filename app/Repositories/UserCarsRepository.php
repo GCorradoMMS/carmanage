@@ -15,7 +15,7 @@ class UserCarsRepository implements UserCarsRepositoryInterface {
     }
 
     public function associateUserToCar(int $userId, int $carId): UserCar | JsonResponse {
-        if($this->validateUniqueUserCarRelation($userId, $carId)) {            
+        if($this->haveUniqueUserCarRelation($userId, $carId)) {            
             return new JsonResponse(['error' => 'Relation already exists'], 422);
         }
 
@@ -32,11 +32,12 @@ class UserCarsRepository implements UserCarsRepositoryInterface {
         return $this->model->where('user_id', $userId)->with('car')->get();
     }
 
-    protected function validateUniqueUserCarRelation(int $userId, int $carId): bool {
+    protected function haveUniqueUserCarRelation(int $userId, int $carId): bool {
         if ($this->model->where('user_id', $userId)
                    ->where('car_id', $carId)
                    ->exists()) {
             return true;
         }
+        return false;
     }
 }
