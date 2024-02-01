@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -29,9 +30,9 @@ class User extends Model
     protected $casts = [
         'password' => 'hashed',
     ];
-    
+
     public function userCars()
     {
-        return $this->hasMany(UserCar::class, 'user_id')->onDelete('cascade');
+        return $this->hasMany(UserCar::class, 'user_id');
     }
 }

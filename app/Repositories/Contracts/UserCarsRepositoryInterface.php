@@ -10,5 +10,4 @@ interface UserCarsRepositoryInterface
 {
     public function associateUserToCar(int $userId, int $carId): UserCar | JsonResponse;
     public function disassociateUserToCar(int $userId, int $carId): void;
-    public function getUserCars(int $userId): Collection;
 }

@@ -3,7 +3,6 @@
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\UserCarController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,14 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    // return $request->user();
-// });
-
-
 Route::prefix('v1')->group(function () {
 
-    Route::prefix('users')->group(function() {
+    Route::prefix('users')->group(function () {
         Route::get('/', [UserController::class, 'index']);
         Route::get('/{userId}', [UserController::class, 'show']);
         Route::post('/', [UserController::class, 'store']);
@@ -33,10 +27,10 @@ Route::prefix('v1')->group(function () {
 
         Route::post('/associate/cars/', [UserCarController::class, 'associate']);
         Route::delete('/disassociate/cars/', [UserCarController::class, 'disassociate']);
-        Route::get('/{userId}/cars', [UserCarController::class, 'getUserCars']);
+        Route::get('/{userId}/cars', [UserController::class, 'cars']);
     });
 
-    Route::prefix('cars')->group(function() {
+    Route::prefix('cars')->group(function () {
         Route::get('/', [CarController::class, 'index']);
         Route::get('/{carsId}', [CarController::class, 'show']);
         Route::post('/', [CarController::class, 'store']);

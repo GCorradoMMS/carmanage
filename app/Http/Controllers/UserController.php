@@ -11,7 +11,8 @@ class UserController extends Controller
 {
     protected $service;
 
-    public function __construct(UserService $service) {
+    public function __construct(UserService $service)
+    {
         $this->service = $service;
     }
 
@@ -41,10 +42,17 @@ class UserController extends Controller
         return new UserResource($user);
     }
 
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $this->service->destroyUser($id);
 
         return response()->json(['message' => 'User deleted successfully']);
+    }
+
+    public function cars(int $id)
+    {
+        $userCars = $this->service->getUserCars($id);
+
+        return response()->json($userCars);
     }
 }

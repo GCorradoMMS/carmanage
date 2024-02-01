@@ -16,7 +16,7 @@ class Car extends Model
     protected $primaryKey = 'id';
     public $incrementing = true;
     public $timestamps = true;
-    
+
     protected $fillable = [
         'model',
         'year'
@@ -28,6 +28,6 @@ class Car extends Model
 
     public function userCars()
     {
-        return $this->hasMany(UserCar::class, 'car_id')->onDelete('cascade');
+        return $this->hasMany(UserCar::class, 'car_id');
     }
 }

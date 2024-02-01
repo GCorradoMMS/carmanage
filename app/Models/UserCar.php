@@ -16,7 +16,7 @@ class UserCar extends Model
     protected $primaryKey = 'id';
     public $incrementing = true;
     public $timestamps = true;
-    
+
     protected $fillable = [
         'user_id',
         'car_id'
@@ -30,7 +30,7 @@ class UserCar extends Model
         'updated_at',
         'deleted_at',
     ];
-    
+
     public function car()
     {
         return $this->belongsTo(Car::class, 'car_id');

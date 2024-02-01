@@ -11,7 +11,8 @@ class CarController extends Controller
 {
     protected $service;
 
-    public function __construct(CarService $service) {
+    public function __construct(CarService $service)
+    {
         $this->service = $service;
     }
 

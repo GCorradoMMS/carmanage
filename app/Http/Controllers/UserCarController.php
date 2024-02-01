@@ -7,13 +7,14 @@ use App\Http\Requests\UserCarRequest;
 
 class UserCarController extends Controller
 {
-    
+
     protected $service;
 
-    public function __construct(UserCarsService $service) {
+    public function __construct(UserCarsService $service)
+    {
         $this->service = $service;
     }
-    
+
     public function associate(UserCarRequest $request)
     {
         $this->service->associateUserToCar(
@@ -32,12 +33,5 @@ class UserCarController extends Controller
         );
 
         return response()->json(['message' => 'User disassociated from car successfully']);
-    }
-
-    public function getUserCars($userId)
-    {
-        $userCars = $this->service->getUserCars($userId);
-
-        return response()->json($userCars);
     }
 }
