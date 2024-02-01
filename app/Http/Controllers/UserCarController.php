@@ -22,7 +22,7 @@ class UserCarController extends Controller
             $request->input('carId'),
         );
 
-        return response()->json(['message' => 'User associated with car successfully']);
+        return response()->json(['message' => 'User associated with car successfully'], 201);
     }
 
     public function disassociate(UserCarRequest $request)
@@ -32,6 +32,6 @@ class UserCarController extends Controller
             $request->input('carId')
         );
 
-        return response()->json(['message' => 'User disassociated from car successfully']);
+        return response()->json(['message' => 'User disassociated from car successfully'], 204);
     }
 }

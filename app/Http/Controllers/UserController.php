@@ -25,34 +25,34 @@ class UserController extends Controller
 
     public function show(int $id)
     {
-        return $this->service->getUserById($id);
+        return response()->json(['data' => $this->service->getUserById($id)], 200);
     }
 
     public function store(UserRequest $request)
     {
         $user = $this->service->storeUser($request->validated());
 
-        return $user;
+        return response()->json(['data' => $user], 200);
     }
 
     public function update(UserUpdateRequest $request, int $id)
     {
         $user = $this->service->updateUser($id, $request->validated());
 
-        return new UserResource($user);
+        return response()->json([ 'data' => new UserResource($user)], 200);
     }
 
     public function destroy(int $id)
     {
         $this->service->destroyUser($id);
 
-        return response()->json(['message' => 'User deleted successfully']);
+        return response()->json(['message' => 'User deleted successfully'], 204);
     }
 
     public function cars(int $id)
     {
         $userCars = $this->service->getUserCars($id);
 
-        return response()->json($userCars);
+        return $userCars;
     }
 }

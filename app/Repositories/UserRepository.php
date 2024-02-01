@@ -47,7 +47,7 @@ class UserRepository implements UserRepositoryInterface
 
     function getCars(int $id): LengthAwarePaginator
     {
-        $cars = $this->model->with('userCars.car')->findOrFail($id);
-        return $cars->paginate(2);
+        $user = $this->model->findOrFail($id);
+        return $user->with('userCars.car')->paginate(2);
     }
 }

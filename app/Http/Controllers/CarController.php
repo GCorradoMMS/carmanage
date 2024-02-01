@@ -25,14 +25,13 @@ class CarController extends Controller
 
     public function show(int $id)
     {
-        return $this->service->getCarById($id);
+        return response()->json(['data' => $this->service->getCarById($id)], 200);
     }
 
     public function store(CarRequest $request)
     {
         $car = $this->service->storeCar($request->validated());
-
-        return $car;
+        return response()->json(['data' => $car], 200);
     }
 
 
@@ -40,13 +39,13 @@ class CarController extends Controller
     {
         $car = $this->service->updateCar($id, $request->validated());
 
-        return new CarResource($car);
+        return response()->json(['data' => new CarResource($car)], 200);
     }
 
     public function destroy($id)
     {
         $this->service->destroyCar($id);
 
-        return response()->json(['message' => 'Car deleted successfully']);
+        return response()->json(['message' => 'Car deleted successfully'], 204);
     }
 }
