@@ -1,66 +1,141 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# API CarManage
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Visão Geral
 
-## About Laravel
+A API CarManage oferece funcionalidades para gerenciar usuários e carros, permitindo associações entre eles.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Rotas Disponíveis
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Usuários
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+#### Listar Todos os Usuários
 
-## Learning Laravel
+**Rota:** `GET /api/v1/users`
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Retorna uma lista de todos os usuários cadastrados.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+#### Detalhes do Usuário
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**Rota:** `GET /api/v1/users/{userId}`
 
-## Laravel Sponsors
+Obtém os detalhes de um usuário específico com base no ID fornecido.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+#### Criar Novo Usuário
 
-### Premium Partners
+**Rota:** `POST /api/v1/users`
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Cria um novo usuário com base nos dados fornecidos no corpo da requisição.
 
-## Contributing
+#### Atualizar Usuário
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**Rota:** `PUT /api/v1/users/{userId}`
 
-## Code of Conduct
+Atualiza as informações de um usuário específico com base no ID fornecido.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### Excluir Usuário
 
-## Security Vulnerabilities
+**Rota:** `DELETE /api/v1/users/{userId}`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Remove um usuário específico com base no ID fornecido.
 
-## License
+#### Associar Carro a Usuário
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Rota:** `POST /api/v1/users/associate/cars`
+
+Associa um carro a um usuário específico com base nos dados fornecidos no corpo da requisição.
+
+#### Desassociar Carro de Usuário
+
+**Rota:** `DELETE /api/v1/users/disassociate/cars`
+
+Desassocia um carro de um usuário específico com base nos dados fornecidos no corpo da requisição.
+
+#### Obter Carros de um Usuário
+
+**Rota:** `GET /api/v1/users/{userId}/cars`
+
+Obtém a lista de carros associados a um usuário específico com base no ID fornecido.
+
+### Carros
+
+#### Listar Todos os Carros
+
+**Rota:** `GET /api/v1/cars`
+
+Retorna uma lista de todos os carros cadastrados.
+
+#### Detalhes do Carro
+
+**Rota:** `GET /api/v1/cars/{carId}`
+
+Obtém os detalhes de um carro específico com base no ID fornecido.
+
+#### Criar Novo Carro
+
+**Rota:** `POST /api/v1/cars`
+
+Cria um novo carro com base nos dados fornecidos no corpo da requisição.
+
+#### Atualizar Carro
+
+**Rota:** `PUT /api/v1/cars/{carId}`
+
+Atualiza as informações de um carro específico com base no ID fornecido.
+
+#### Excluir Carro
+
+**Rota:** `DELETE /api/v1/cars/{carId}`
+
+Remove um carro específico com base no ID fornecido.
+
+## Instruções de Instalação
+
+1. Clone o repositório do projeto:
+
+```bash
+git clone https://github.com/GCorradoMMS/carmanage
+```
+
+2. Instale as dependências do projeto:
+
+```bash
+composer install
+```
+
+3. Copie o arquivo de ambiente de exemplo e ajuste as configurações:
+
+```bash
+cp .env.example .env
+```
+
+4. Configure seu banco de dados no arquivo `.env` com as credenciais apropriadas.
+
+5. Crie o banco de dados e execute as migrações:
+
+```bash
+php artisan migrate
+```
+
+6. Execute os testes para garantir que tudo está configurado corretamente:
+
+```bash
+php artisan test
+```
+
+7. Inicie o servidor:
+
+```bash
+php artisan serve
+```
+É possível também utilizar o Docker para rodar o projeto com todas as dependências resolvidas utilizando:
+
+```bash
+docker compose build
+```
+e
+
+```bash
+docker compose up
+```
+
+A API estará disponível em `http://localhost:8000`. Agora você pode usar as rotas documentadas acima para interagir com a API CarManage.
